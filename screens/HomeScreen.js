@@ -1,29 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, View, Button } from 'react-native';
+import { Text, Button } from 'react-native';
+import { Content, Container } from 'native-base';
+import HeaderComponent from '../components/Header';
 
 class HomeScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = {
     title: 'Home',
-    headerLeft: (
-      <Button onPress={() => navigation.navigate('MyModal')} title="Info" color="#fff" />
-    ),
-    headerRight: <Button onPress={() => alert('This is a button!')} title="Info" color="#fff" />,
-  });
+  };
   render() {
     const { navigation } = this.props;
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
-        <Button
-          title="Go to Details"
-          onPress={() =>
-            navigation.navigate('Details', {
-              itemId: 86,
-              otherParam: 'anything you want here',
-            })}
-        />
-      </View>
+      <Container>
+        <HeaderComponent {...this.props} />
+        <Content contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text>Home Screen</Text>
+          <Button
+            title="Go to Details"
+            onPress={() =>
+              navigation.navigate('Details', {
+                itemId: 86,
+                otherParam: 'anything you want here',
+              })}
+          />
+        </Content>
+      </Container>
     );
   }
 }
